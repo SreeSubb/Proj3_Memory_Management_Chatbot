@@ -75,16 +75,17 @@ ChatBot::ChatBot(ChatBot &&source) {
     _currentNode = source._currentNode;
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
-// source deleted; source no longer available 
+    _chatLogic->SetChatbotHandle(this);
+// source pointer no longer available 
     source._image = nullptr;
     source._currentNode = nullptr;
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
-    std::cout << "Moving content of object to " << this << std::endl; 
+    std::cout << "ChatBot Constructor moving content of object to " << this << std::endl; 
 }
 //Rule5:move assignment operator
 ChatBot &ChatBot::operator=(ChatBot &&source) {  
-    std::cout << "Moving content of object to " << this << std::endl;
+    std::cout << "ChatBot Move Assignment Operator moving content of object to " << this << std::endl;
     if(this == &source) {
         return *this;
     }
@@ -93,7 +94,8 @@ ChatBot &ChatBot::operator=(ChatBot &&source) {
     _currentNode = source._currentNode;
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
-    // source deleted; source no longer available 
+    _chatLogic->SetChatbotHandle(this);
+    // source pointer no longer available 
     source._image = nullptr;
     source._currentNode = nullptr;
     source._rootNode = nullptr;
